@@ -1,26 +1,225 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (max-width: 767px) {
+  main {
+    padding-bottom: 5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+
+@theme {
+  --font-satisfy: "Satisfy", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  --breakpoint-3xl: 120rem;
+
+  --color-O: #f36f21;
+  --color-B: #1f4c8b;
+
+  /* Fade Up Animation */
+  --animate-fade-up: fade-up 0.7s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gallery Animation */
+  --animate-bmc: bmc 25s linear infinite;
+
+  @keyframes bmc {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Wiggle Animation */
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-5deg);
+    }
+
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+}
+
+
+/* =====================================================
+   OUR SERVICE - BACKGROUND ANIMATION
+   ===================================================== */
+
+@keyframes service-orb-orange {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(70px, -40px, 0) scale(1.1);
+  }
+
+  50% {
+    transform: translate3d(20px, 60px, 0) scale(0.95);
+  }
+
+  75% {
+    transform: translate3d(-50px, 25px, 0) scale(1.08);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+
+@keyframes service-orb-blue {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(-60px, 45px, 0) scale(1.08);
+  }
+
+  50% {
+    transform: translate3d(-20px, -60px, 0) scale(0.94);
+  }
+
+  75% {
+    transform: translate3d(55px, -25px, 0) scale(1.1);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+
+@keyframes service-orb-orange-two {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  30% {
+    transform: translate3d(55px, -55px, 0) scale(1.12);
+  }
+
+  60% {
+    transform: translate3d(-65px, -20px, 0) scale(0.9);
+  }
+
+  80% {
+    transform: translate3d(25px, 55px, 0) scale(1.08);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+
+/* Orange Orb */
+.service-orb-orange {
+  background: rgba(243, 111, 33, 0.28);
+  filter: blur(65px);
+  opacity: 0.45;
+  will-change: transform;
+  animation: service-orb-orange 12s ease-in-out infinite;
+}
+
+
+/* Blue Orb */
+.service-orb-blue {
+  background: rgba(31, 76, 139, 0.25);
+  filter: blur(65px);
+  opacity: 0.45;
+  will-change: transform;
+  animation: service-orb-blue 15s ease-in-out infinite;
+}
+
+
+/* Second Orange Orb */
+.service-orb-orange-two {
+  background: rgba(243, 111, 33, 0.22);
+  filter: blur(65px);
+  opacity: 0.4;
+  will-change: transform;
+  animation: service-orb-orange-two 18s ease-in-out infinite;
+}
+
+
+/* Second Blue Orb */
+.service-orb-blue-two {
+  background: rgba(31, 76, 139, 0.18);
+  filter: blur(65px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: service-orb-blue 20s ease-in-out infinite reverse;
+}
+
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+
+  .service-orb-orange,
+  .service-orb-blue,
+  .service-orb-orange-two,
+  .service-orb-blue-two {
+    filter: blur(50px);
+    opacity: 0.3;
+  }
+
+  .service-orb-orange {
+    animation-duration: 16s;
+  }
+
+  .service-orb-blue {
+    animation-duration: 19s;
+  }
+
+  .service-orb-orange-two {
+    animation-duration: 22s;
+  }
+
+  .service-orb-blue-two {
+    animation-duration: 24s;
+  }
+}
+
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
